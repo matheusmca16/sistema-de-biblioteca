@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
 public class Menu {
+    private int opcao = -1;
+
+    public int getOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(int opcao) {
+        this.opcao = opcao;
+    }
+
     private void execultaOpcaoInicial() {
         Scanner scanner = new Scanner(System.in);
-
-        int opcao = -1;
 
         do {
             opcao = scanner.nextInt();
@@ -59,8 +67,29 @@ public class Menu {
         System.out.println("=================================");
     }
 
-    public void processaMenuInicial() {
+    private void mostrarMenuSecundario() {
+
+        System.out.println("=================================");
+        System.out.println("|   [0] Sair.                   |");
+        System.out.println("|   [1] Cadastro de livros.     |");
+        System.out.println("|   [2] Listar todos os livros. |");
+        System.out.println("|   [3] Busca livros.           |");
+        System.out.println("|   [4] Cadastro de usuários.   |");
+        System.out.println("|   [5] Empréstimo de livro.    |");
+        System.out.println("|   [6] Devolução.              |");
+        System.out.println("|   [7] Relatórios.             |");
+        System.out.println("|   Digite a opção desejada:    |");
+        System.out.println("=================================");
+    }
+
+    public int processaMenuInicial() {
         mostrarMenuInicial();
         execultaOpcaoInicial();
+        return opcao;
+    }
+    public int processaMenuSecundario() {
+        mostrarMenuSecundario();
+        execultaOpcaoInicial();
+        return opcao;
     }
 }
