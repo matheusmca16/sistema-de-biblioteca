@@ -7,9 +7,8 @@ public class Main {
 
         int continuarSistema;
         ArrayList<Livro> livros = new ArrayList<>();
-        Menu menuInicial = new Menu();
 
-        menuInicial.processaMenuInicial();
+        Menu menuInicial = Menu.iniciarMenu();
 
         do {
             int opcaoInicial = menuInicial.getOpcao();

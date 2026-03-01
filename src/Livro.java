@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class Livro {
 
-    private int idAnterior = 0;
     private int id = 0;
     private String titulo;
     private String autor;
@@ -28,15 +27,6 @@ public class Livro {
     }
 
     public Livro() {
-
-    }
-
-    public int getIdAnterior() {
-        return idAnterior;
-    }
-
-    public void setIdAnterior(int idAnterior) {
-        this.idAnterior = idAnterior;
     }
 
     public int getId() {
@@ -82,7 +72,7 @@ public class Livro {
     Scanner scanner = new Scanner(System.in);
 
     public void cadastroDeLivro(ArrayList<Livro> livros) {
-        id = livros.size() + 1;
+        id = livros.size();
         System.out.println("Para cadastrar o livro desejado, siga os próximos passas..\n");
         System.out.println("O id do seu livro é " + id);
         System.out.println("Qual o título do livro?");
@@ -99,9 +89,10 @@ public class Livro {
         if (livros.size() == 0) {
             System.out.println("Não há livros para listar.");
         } else {
-            for(Livro titulo : livros) {
-                System.out.println(titulo);
+            for (int i = 0; i < livros.size(); i++) {
+                System.out.println("ID: " + i + " Título: " + livros.get(i).getTitulo());
             }
         }
     }
 }
+

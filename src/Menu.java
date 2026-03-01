@@ -92,4 +92,9 @@ public class Menu {
         execultaOpcaoInicial();
         return opcao;
     }
+    public static Menu iniciarMenu() {
+        Menu menu = new Menu();
+        menu.processaMenuInicial();
+        return menu;
+    }
 }
