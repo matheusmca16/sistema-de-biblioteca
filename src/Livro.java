@@ -81,6 +81,7 @@ public class Livro {
         autor = scanner.nextLine();
         System.out.println("Qual o ano do livro? formato mm/dd/aa");
         ano = scanner.nextLine();
+        emprestado = false;
         livros.add(this);
         System.out.println("Livro cadastrado com sucesso!!");
     }
@@ -88,11 +89,49 @@ public class Livro {
 
         if (livros.size() == 0) {
             System.out.println("Não há livros para listar.");
-        } else {
+
+            boolean emprestado = false;
             for (int i = 0; i < livros.size(); i++) {
-                System.out.println("ID: " + i + " Título: " + livros.get(i).getTitulo());
+                Livro l = livros.get(i);
+
+                if (emprestado == true) {
+                    System.out.println("Livro não disponível .");
+                    System.out.println("ID: " + l.getId());
+                    System.out.println("Título: " + l.getTitulo());
+                    System.out.println("Emprestado: " + l.isEmprestado());
+                }
+                if (emprestado == false) {
+                    System.out.println("Livro Disponível!");
+                    System.out.println("ID: " + l.getId());
+                    System.out.println("Título: " + l.getTitulo());
+                    System.out.println("Emprestado: " + l.isEmprestado());
+
+                }
+            }
+       }
+    }
+    public void buscarLivro(ArrayList<Livro> livros){
+
+        System.out.println("Digite o título ou autor do livro que deseja buscar:");
+        String busca = scanner.nextLine();
+        boolean encontrado = false;
+
+        for (int i = 0; i < livros.size(); i++) {
+                Livro l = livros.get(i);
+                if (l.getTitulo().equalsIgnoreCase(busca) || l.getAutor().equalsIgnoreCase(busca)) {
+
+                System.out.println("Livro encontrado!");
+                System.out.println("ID: " + l.getId());
+                System.out.println("Título: " + l.getTitulo());
+                System.out.println("Autor: " + l.getAutor());
+                System.out.println("Ano: " + l.getAno());
+                System.out.println("Emprestado: " + l.isEmprestado());
+
+                encontrado = true;
+            }
+            if (encontrado == false){
+            System.out.println("Livro não encontrado.");
             }
         }
     }
 }
-
