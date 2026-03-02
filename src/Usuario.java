@@ -58,4 +58,8 @@ public class Usuario {
             System.out.println("Usuario não encontrado.");
         }
     }
+    public static void chamarCadastroUsu(ArrayList<Usuario> usuarios) {
+        Usuario usuario = new Usuario();
+        usuario.cadastroDeUsuario(usuarios);
+    }
 }

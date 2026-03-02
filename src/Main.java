@@ -25,6 +25,15 @@ public class Main {
                 case 2:
                     Livro livroInicial = new Livro();
                     livroInicial.listaLivros(livros);
+                    break;
+                case 3:
+                    Livro livroBusca = new Livro();
+                    livroBusca.buscarLivroId(livros);
+                    break;
+                case 4:
+                    Usuario cadUsO = new Usuario();
+                    cadUsO.cadastroDeUsuario(listaUsuarios);
+                    break;
                 default:
             }
             do {

@@ -89,26 +89,24 @@ public class Livro {
 
         if (livros.size() == 0) {
             System.out.println("Não há livros para listar.");
+        }
+        boolean emprestado = false;
+        for (int i = 0; i < livros.size(); i++) {
+            Livro l = livros.get(i);
 
-            boolean emprestado = false;
-            for (int i = 0; i < livros.size(); i++) {
-                Livro l = livros.get(i);
-
-                if (emprestado == true) {
-                    System.out.println("Livro não disponível .");
-                    System.out.println("ID: " + l.getId());
-                    System.out.println("Título: " + l.getTitulo());
-                    System.out.println("Emprestado: " + l.isEmprestado());
-                }
-                if (emprestado == false) {
-                    System.out.println("Livro Disponível!");
-                    System.out.println("ID: " + l.getId());
-                    System.out.println("Título: " + l.getTitulo());
-                    System.out.println("Emprestado: " + l.isEmprestado());
-
-                }
+        if (emprestado == true) {
+            System.out.println("Livro não disponível .");
+            System.out.println("ID: " + l.getId());
+            System.out.println("Título: " + l.getTitulo());
+            System.out.println("Emprestado: " + l.isEmprestado());
+        }
+        if (emprestado == false) {
+            System.out.println("Livro Disponível!");
+            System.out.println("ID: " + l.getId());
+            System.out.println("Título: " + l.getTitulo());
+            System.out.println("Emprestado: " + l.isEmprestado());
             }
-       }
+        }
     }
     public void buscarLivro(ArrayList<Livro> livros){
 
@@ -157,5 +155,10 @@ public class Livro {
         if (!encontrado) {
             System.out.println("Livro não encontrado.");
         }
+    }
+    public static Livro execultarFiltrosBusca(ArrayList<Livro> livros){
+        Livro livroInicial = new Livro();
+        livroInicial.buscarLivroId(livros);
+        return livroInicial;
     }
 }
