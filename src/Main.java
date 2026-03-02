@@ -1,7 +1,47 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-                // Chama direto: NomeDaClasse.nomeDoMetodo(argumentos);
-        Menu menuInicial = new Menu();
-        menuInicial.processaMenuInicial();
+        Scanner scanner = new Scanner(System.in);
+
+        int continuarSistema;
+        ArrayList<Livro> livros = new ArrayList<>();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+        Menu menuInicial = Menu.iniciarMenu();
+
+        do {
+            int opcaoInicial = menuInicial.getOpcao();
+
+            switch (opcaoInicial) {
+                case 0:
+                    System.out.println("Você saiu da biblioteca.");
+                    break;
+                case 1:
+                    Livro livro = new Livro("", "", "");
+                    livro.cadastroDeLivro(livros);
+                    break;
+                case 2:
+                    Livro livroInicial = new Livro();
+                    livroInicial.listaLivros(livros);
+                    break;
+                case 3:
+                    Livro livroBusca = new Livro();
+                    livroBusca.buscarLivroId(livros);
+                    break;
+                case 4:
+                    Usuario cadUsO = new Usuario();
+                    cadUsO.cadastroDeUsuario(listaUsuarios);
+                    break;
+                default:
+            }
+            do {
+                System.out.println("Deseja continuar no sistema? 1-(sim) 2-(Não)");
+                continuarSistema = scanner.nextInt();
+            }while (continuarSistema < 0 || continuarSistema > 1);
+
+        menuInicial.processaMenuSecundario();
+        }while (continuarSistema == 1);
     }
 }
