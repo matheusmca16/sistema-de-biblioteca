@@ -134,4 +134,28 @@ public class Livro {
             }
         }
     }
+    public void buscarLivroId(ArrayList<Livro> livros){
+        System.out.println("Digite o id do livro desejado..");
+        int buscaId = scanner.nextInt();
+        boolean encontrado = false;
+
+        for (int i = 0; i < livros.size(); i++) {
+            Livro l = livros.get(i);
+
+            if (l.getId() == buscaId) {
+
+                System.out.println("Livro encontrado!");
+                System.out.println("ID: " + l.getId());
+                System.out.println("Título: " + l.getTitulo());
+                System.out.println("Autor: " + l.getAutor());
+                System.out.println("Ano: " + l.getAno());
+                System.out.println("Emprestado: " + l.isEmprestado());
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Livro não encontrado.");
+        }
+    }
 }

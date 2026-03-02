@@ -7,6 +7,7 @@ public class Main {
 
         int continuarSistema;
         ArrayList<Livro> livros = new ArrayList<>();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         Menu menuInicial = Menu.iniciarMenu();
 
