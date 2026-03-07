@@ -7,6 +7,10 @@ public class Usuario {
     private int idUsuario = 0;
     private String nomeUsuario;
 
+    public ArrayList<Livro> getListaLivrosEmprestados() {
+        return listaLivrosEmprestados;
+    }
+
     public String getNomeUsuario() {
         return nomeUsuario;
     }
@@ -25,6 +29,21 @@ public class Usuario {
 
     ArrayList<Livro> listaLivrosEmprestados = new ArrayList<>();
 
+    public static void ListaLivrosEmprestados(ArrayList<Livro> listaLivrosEmprestados){
+
+        if (listaLivrosEmprestados.size() == 0) {
+            System.out.println("Não há livros para listar.");
+        }
+
+        for (int i = 0; i < listaLivrosEmprestados.size(); i++) {
+            Livro l = listaLivrosEmprestados.get(i);
+
+                System.out.println("Livro não disponível .");
+                System.out.println("ID: " + l.getId());
+                System.out.println("Título: " + l.getTitulo() + "\n");
+            }
+        }
+
     Scanner scanner = new Scanner(System.in);
 
     public void cadastroDeUsuario(ArrayList<Usuario> usuarios) {
@@ -37,29 +56,26 @@ public class Usuario {
         usuarios.add(this);
         System.out.println("Usuario cadastrado!!");
     }
-    public void buscarUsuarioId(ArrayList<Usuario> usuarios){
+    public Usuario buscarUsuarioId(ArrayList<Usuario> usuarios){
         System.out.println("Digite o id do Usuario desejado..");
         int buscaId = scanner.nextInt();
-        boolean encontrado = false;
+
 
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
 
             if (u.getIdUsuario() == buscaId) {
 
-                System.out.println("Usuario encontrado!");
+                System.out.println("Usuario encontrado! \n");
                 System.out.println("ID: " + u.getIdUsuario());
-                System.out.println("Nome: " + u.getNomeUsuario());
-                encontrado = true;
+                System.out.println("Nome: " + u.getNomeUsuario() + "\n");
+                System.out.println("Livros emprestados...");
+                Usuario.ListaLivrosEmprestados(u.listaLivrosEmprestados);
+
+                return u;
             }
         }
-
-        if (!encontrado) {
-            System.out.println("Usuario não encontrado.");
-        }
-    }
-    public static void chamarCadastroUsu(ArrayList<Usuario> usuarios) {
-        Usuario usuario = new Usuario();
-        usuario.cadastroDeUsuario(usuarios);
+        System.out.println("Usuario não encontrado.");
+        return null;
     }
 }
