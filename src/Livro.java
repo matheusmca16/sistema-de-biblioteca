@@ -1,4 +1,3 @@
-import java.sql.ClientInfoStatus;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -18,7 +17,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String ano;
-    private boolean emprestado;
+    private boolean emprestado = true;
 
     public Livro(String titulo, String autor, String ano) {
         this.titulo = titulo;
@@ -61,7 +60,7 @@ public class Livro {
         this.ano = ano;
     }
 
-    public boolean isEmprestado() {
+    public boolean getEmprestado() {
         return emprestado;
     }
 
@@ -74,7 +73,7 @@ public class Livro {
     public void cadastroDeLivro(ArrayList<Livro> livros) {
         id = livros.size();
         System.out.println("Para cadastrar o livro desejado, siga os próximos passas..\n");
-        System.out.println("O id do seu livro é " + id);
+        System.out.println("O id do seu livro é " + id + "\n");
         System.out.println("Qual o título do livro?");
         titulo = scanner.nextLine();
         System.out.println("Qual o nome do autor livro?");
@@ -85,57 +84,60 @@ public class Livro {
         livros.add(this);
         System.out.println("Livro cadastrado com sucesso!!");
     }
+
     public void listaLivros(ArrayList<Livro> livros){
 
         if (livros.size() == 0) {
             System.out.println("Não há livros para listar.");
         }
-        boolean emprestado = false;
+
         for (int i = 0; i < livros.size(); i++) {
             Livro l = livros.get(i);
 
-        if (emprestado == true) {
-            System.out.println("Livro não disponível .");
-            System.out.println("ID: " + l.getId());
-            System.out.println("Título: " + l.getTitulo());
-            System.out.println("Emprestado: " + l.isEmprestado());
-        }
-        if (emprestado == false) {
-            System.out.println("Livro Disponível!");
-            System.out.println("ID: " + l.getId());
-            System.out.println("Título: " + l.getTitulo());
-            System.out.println("Emprestado: " + l.isEmprestado());
+            if (l.getEmprestado()) {
+                System.out.println("Livro não disponível.");
+            } else {
+                System.out.println("Livro disponível.");
             }
+                System.out.println("ID: " + l.getId());
+                System.out.println("Título: " + l.getTitulo() + "\n");
         }
     }
     public void buscarLivro(ArrayList<Livro> livros){
 
         System.out.println("Digite o título ou autor do livro que deseja buscar:");
         String busca = scanner.nextLine();
+
         boolean encontrado = false;
 
         for (int i = 0; i < livros.size(); i++) {
-                Livro l = livros.get(i);
-                if (l.getTitulo().equalsIgnoreCase(busca) || l.getAutor().equalsIgnoreCase(busca)) {
+
+            Livro l = livros.get(i);
+
+            if (l.getTitulo().equalsIgnoreCase(busca) ||
+                    l.getAutor().equalsIgnoreCase(busca)) {
 
                 System.out.println("Livro encontrado!");
                 System.out.println("ID: " + l.getId());
                 System.out.println("Título: " + l.getTitulo());
                 System.out.println("Autor: " + l.getAutor());
                 System.out.println("Ano: " + l.getAno());
-                System.out.println("Emprestado: " + l.isEmprestado());
+                if (l.getEmprestado()) {
+                    System.out.println("Status: EMPRESTADO");
+                } else {
+                    System.out.println("Status: DISPONÍVEL");
+                }
 
                 encontrado = true;
             }
-            if (encontrado == false){
+        }
+        if (encontrado == false){
             System.out.println("Livro não encontrado.");
-            }
         }
     }
-    public void buscarLivroId(ArrayList<Livro> livros){
+    public Livro buscarLivroId(ArrayList<Livro> livros){
         System.out.println("Digite o id do livro desejado..");
         int buscaId = scanner.nextInt();
-        boolean encontrado = false;
 
         for (int i = 0; i < livros.size(); i++) {
             Livro l = livros.get(i);
@@ -147,18 +149,16 @@ public class Livro {
                 System.out.println("Título: " + l.getTitulo());
                 System.out.println("Autor: " + l.getAutor());
                 System.out.println("Ano: " + l.getAno());
-                System.out.println("Emprestado: " + l.isEmprestado());
-                encontrado = true;
+                if (l.getEmprestado()) {
+                    System.out.println("Status: EMPRESTADO");
+                } else {
+                    System.out.println("Status: DISPONÍVEL");
+                }
+                return l;
             }
         }
-
-        if (!encontrado) {
             System.out.println("Livro não encontrado.");
-        }
-    }
-    public static Livro execultarFiltrosBusca(ArrayList<Livro> livros){
-        Livro livroInicial = new Livro();
-        livroInicial.buscarLivroId(livros);
-        return livroInicial;
+        return null;
     }
 }
+
